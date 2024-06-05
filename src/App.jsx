@@ -9,12 +9,13 @@ import About from "./pages/about/about";
 import Contact from "./pages/contact/contact";
 import Home from "./pages/home/home";
 import Layout from "./layout/FirstPage";
+import NotFound from "./pages/404Error/NotFound";
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" errorElement={<NotFound />} element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
