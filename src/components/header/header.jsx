@@ -1,12 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
+import "./header.css";
 function Header() {
   return (
     <>
       <header>
         <div className="container header-container">
-          <h2>Logo</h2>
+          <h2 className="logo">Logo</h2>
           <nav>
             <ul className="navlist">
               <NavLink to="/">
