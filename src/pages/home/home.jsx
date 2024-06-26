@@ -3,30 +3,35 @@ import "./home.css";
 import { Link } from "react-router-dom";
 
 function Home() {
-  const [islands, setIslands] = useState([]);
+  const [products, setProducts] = useState(null);
   // Use 'islands' instead of 'trips'
   useEffect(() => {
-    fetch("  https://jsonplaceholder.typicode.com/photos")
+    fetch("  https://dummyjson.com/product")
       .then((data) => data.json())
-      .then((response) => {
-        setIslands(response.slice(0, 10)); // Access the 'islands' property
+      .then((products) => {
+        setProducts(products); // Access the 'islands' property
       });
   }, []);
 
   return (
     <div>
       <ul className="cardlist">
-        {islands.map((island) => {
-          return (
-            <li className="card" key={island.id}>
-              <img className="img" src={island.url} alt="" />
-              <h2 className="title">{island.title}</h2>
-              <button className="btn">
-                <Link to="/about">More</Link>
-              </button>
-            </li>
-          );
-        })}
+        {products &&
+          products.products.map((product) => {
+            return (
+              <li className="card" key={product.id}>
+                <img className="img" src={product.thumbnail} alt="" />
+                <h2 className="title">{product.title}</h2>
+                <div>
+                  <h3>Brand:{product.brand}</h3>
+                  <h3>${product.price}</h3>
+                </div>
+                <Link to={`/about/${product.id}`}>
+                  <button className="btn">More</button>
+                </Link>
+              </li>
+            );
+          })}
       </ul>
     </div>
   );
